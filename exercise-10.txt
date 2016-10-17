@@ -1,0 +1,76 @@
+
+/*started with this table which goes by day and has all room information
+saved to each day. Not the most efficient but will work for all
+requirements*/
+
+mysql> describe hotel_rooms;
++-----------------+------------+------+-----+---------+-------+
+| Field           | Type       | Null | Key | Default | Extra |
++-----------------+------------+------+-----+---------+-------+
+| date            | date       | NO   | PRI | NULL    |       |
+| floor           | int(11)    | YES  |     | NULL    |       |
+| room_number     | int(11)    | YES  |     | NULL    |       |
+| room_capacity   | int(11)    | YES  |     | NULL    |       |
+| rentable        | tinyint(1) | YES  |     | NULL    |       |
+| vacant          | tinyint(1) | YES  |     | NULL    |       |
+| windows         | int(11)    | YES  |     | NULL    |       |
+| private_kitchen | tinyint(1) | YES  |     | NULL    |       |
+| carpeted        | tinyint(1) | YES  |     | NULL    |       |
++-----------------+------------+------+-----+---------+-------+
+9 rows in set (0.00 sec)
+
+
+
+
+
+
+
+/*split into two tables with information split by whether it changes
+with the vacancy or not and would be pertninent information.  Will still
+meet all requirements based on the two tables.  Added a room_id column
+to help link the two tables */
+
+
+mysql> show tables;
++-----------------------------+
+| Tables_in_hotel_information |
++-----------------------------+
+| hotel_rooms                 |
+| room_information            |
++-----------------------------+
+2 rows in set (0.00 sec)
+
+
+
+
+mysql> describe room_information;+-----------------+------------+------+-----+---------+----------------+
+| Field           | Type       | Null | Key | Default | Extra          |
++-----------------+------------+------+-----+---------+----------------+
+| floor           | int(11)    | YES  |     | NULL    |                |
+| room_number     | int(11)    | YES  |     | NULL    |                |
+| room_capacity   | int(11)    | YES  |     | NULL    |                |
+| rentable        | tinyint(1) | YES  |     | NULL    |                |
+| windows         | int(11)    | YES  |     | NULL    |                |
+| private_kitchen | tinyint(1) | YES  |     | NULL    |                |
+| carpeted        | tinyint(1) | YES  |     | NULL    |                |
+| room_id         | int(11)    | NO   | PRI | NULL    | auto_increment |
++-----------------+------------+------+-----+---------+----------------+
+8 rows in set (0.00 sec)
+
+mysql> 
+
+
+mysql> describe hotel_rooms;
++---------------+------------+------+-----+---------+-------+
+| Field         | Type       | Null | Key | Default | Extra |
++---------------+------------+------+-----+---------+-------+
+| date          | date       | NO   | PRI | NULL    |       |
+| room_number   | int(11)    | YES  |     | NULL    |       |
+| room_capacity | int(11)    | YES  |     | NULL    |       |
+| rentable      | tinyint(1) | YES  |     | NULL    |       |
+| vacant        | tinyint(1) | YES  |     | NULL    |       |
+| room_id       | int(11)    | YES  |     | NULL    |       |
++---------------+------------+------+-----+---------+-------+
+6 rows in set (0.00 sec)
+
+mysql> 
