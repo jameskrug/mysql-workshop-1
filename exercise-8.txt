@@ -1,0 +1,89 @@
+
+
+mysql> describe account;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
+| email       | varchar(255) | YES  |     | NULL    |                |
+| password    | varchar(40)  | YES  |     | NULL    |                |
+| created_on  | datetime     | YES  |     | NULL    |                |
+| modified_on | datetime     | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> 
+
+
+
+
+mysql> describe address_book;
++-------------+--------------+------+-----+---------+----------------+
+| Field       | Type         | Null | Key | Default | Extra          |
++-------------+--------------+------+-----+---------+----------------+
+| id          | int(11)      | NO   | PRI | NULL    | auto_increment |
+| account_id  | int(11)      | YES  |     | NULL    |                |
+| name        | varchar(255) | YES  |     | NULL    |                |
+| created_on  | datetime     | YES  |     | NULL    |                |
+| modified_on | datetime     | YES  |     | NULL    |                |
++-------------+--------------+------+-----+---------+----------------+
+5 rows in set (0.00 sec)
+
+mysql> 
+
+
+
+
+
+
+
+amysql> describe entry;
++--------------------+--------------+------+-----+---------+----------------+
+| Field              | Type         | Null | Key | Default | Extra          |
++--------------------+--------------+------+-----+---------+----------------+
+| id                 | int(11)      | NO   | PRI | NULL    | auto_increment |
+| entry_number       | int(11)      | YES  |     | NULL    |                |
+| address_book_id    | int(11)      | YES  |     | NULL    |                |
+| first_name         | varchar(255) | YES  |     | NULL    |                |
+| last_name          | varchar(255) | YES  |     | NULL    |                |
+| birthday           | datetime     | YES  |     | NULL    |                |
+| content_line_one   | varchar(255) | YES  |     | NULL    |                |
+| content_line_two   | varchar(255) | YES  |     | NULL    |                |
+| content_line_three | varchar(255) | YES  |     | NULL    |                |
+| content_line_four  | varchar(255) | YES  |     | NULL    |                |
+| content_line_five  | varchar(255) | YES  |     | NULL    |                |
++--------------------+--------------+------+-----+---------+----------------+
+11 rows in set (0.00 sec)
+
+mysql> alter table entry add column type enum("home","work",
+    -> "other");
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> alter table entry add column subtype("phone","address","email");
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near '("phone","address","email")' at line 1
+mysql> alter table entry add column subtype enum ("phone","address","email");
+Query OK, 0 rows affected (0.02 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> describe entry;
++--------------------+---------------------------------+------+-----+---------+----------------+
+| Field              | Type                            | Null | Key | Default | Extra          |
++--------------------+---------------------------------+------+-----+---------+----------------+
+| id                 | int(11)                         | NO   | PRI | NULL    | auto_increment |
+| entry_number       | int(11)                         | YES  |     | NULL    |                |
+| address_book_id    | int(11)                         | YES  |     | NULL    |                |
+| first_name         | varchar(255)                    | YES  |     | NULL    |                |
+| last_name          | varchar(255)                    | YES  |     | NULL    |                |
+| birthday           | datetime                        | YES  |     | NULL    |                |
+| content_line_one   | varchar(255)                    | YES  |     | NULL    |                |
+| content_line_two   | varchar(255)                    | YES  |     | NULL    |                |
+| content_line_three | varchar(255)                    | YES  |     | NULL    |                |
+| content_line_four  | varchar(255)                    | YES  |     | NULL    |                |
+| content_line_five  | varchar(255)                    | YES  |     | NULL    |                |
+| type               | enum('home','work','other')     | YES  |     | NULL    |                |
+| subtype            | enum('phone','address','email') | YES  |     | NULL    |                |
++--------------------+---------------------------------+------+-----+---------+----------------+
+13 rows in set (0.00 sec)
+
+mysql> 
