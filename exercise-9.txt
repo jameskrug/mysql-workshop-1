@@ -1,0 +1,37 @@
+
+mysql> show tables;
++------------------------+
+| Tables_in_chicken_barn |
++------------------------+
+| barn_capacity_history  |
+| maturing_chicks        |
++------------------------+
+2 rows in set (0.00 sec)
+
+mysql> 
+
+
+
+mysql> describe barn_capacity_history;
++----------+---------+------+-----+---------+-------+
+| Field    | Type    | Null | Key | Default | Extra |
++----------+---------+------+-----+---------+-------+
+| roosters | int(11) | YES  |     | NULL    |       |
+| hens     | int(11) | YES  |     | NULL    |       |
+| chicks   | int(11) | YES  |     | NULL    |       |
+| date     | date    | NO   | PRI | NULL    |       |
++----------+---------+------+-----+---------+-------+
+4 rows in set (0.01 sec)
+
+mysql> 
+
+mysql> describe maturing_chicks;
++------------------+---------+------+-----+------------+-------+
+| Field            | Type    | Null | Key | Default    | Extra |
++------------------+---------+------+-----+------------+-------+
+| date             | date    | NO   | PRI | 0000-00-00 |       |
+| chicks_to_mature | int(11) | YES  |     | NULL       |       |
++------------------+---------+------+-----+------------+-------+
+2 rows in set (0.00 sec)
+
+mysql> 
